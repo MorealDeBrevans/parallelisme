@@ -20,9 +20,22 @@ double * ajouter(double * vecteur1, double * vecteur2, int taille){
 	return resultat;
 }
 
-int main(int argc, char *argv[]) {
+double somme(double* vecteur,int taille) {
+	double resultat=0;
+	for(int i=0;i<taille;i++) resultat+=vecteur[i];
+	return resultat;
+}
 
-	int taille = atoi(argv[1]);
+int main(int argc, char *argv[]) {
+	int taille;
+	if(argv[1]) taille = atoi(argv[1]);
+	else taille = 1024;
+	
+	int nb_coeurs;
+	if(argv[2]) nb_coeurs=atoi(argv[2]);
+	else nb_coeurs=1;
+	
+	
 	srand(time(NULL));
 
 	double* vecteur;
@@ -41,6 +54,9 @@ int main(int argc, char *argv[]) {
 	/* Q3. Addition de deux vecteurs */	
 	double * vecteur3 = ajouter(vecteur, vecteur2, taille);
 	afficher(vecteur3, taille);
+	
+	//Q4. somme des cases d'un vecteur
+	printf("%.2f\n", somme(vecteur, taille));
 	
 	free(vecteur);
 	free(vecteur2);
